@@ -8,9 +8,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.flowOn
-import javax.inject.Inject
 
-class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
+class RemoteDataSource(private val apiService: ApiService) {
 
     fun getAllBreed(): Flow<ApiResponse<List<NetworkBreed>>> {
         return flow {
@@ -21,6 +20,18 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
                 } else {
                     emit(ApiResponse.Empty)
                 }
+            } catch (e: Exception) {
+                emit(ApiResponse.Error(e.message.toString()))
+                Log.e("RemoteDataSource", e.message.toString())
+            }
+        }.flowOn(Dispatchers.IO)
+    }
+
+    fun getBreedById(id: String): Flow<ApiResponse<NetworkBreed>> {
+        return flow {
+            try {
+                val response = apiService.getBreedById(id)
+                emit(ApiResponse.Success(response))
             } catch (e: Exception) {
                 emit(ApiResponse.Error(e.message.toString()))
                 Log.e("RemoteDataSource", e.message.toString())

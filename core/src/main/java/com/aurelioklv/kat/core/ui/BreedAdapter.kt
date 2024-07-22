@@ -3,8 +3,8 @@ package com.aurelioklv.kat.core.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.aurelioklv.kat.core.domain.model.Breed
 import com.aurelioklv.kat.core.databinding.ItemBreedBinding
+import com.aurelioklv.kat.core.domain.model.Breed
 import com.bumptech.glide.Glide
 
 class BreedAdapter(private val onClick: ((Breed) -> Unit)? = null) :

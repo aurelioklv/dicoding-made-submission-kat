@@ -21,4 +21,7 @@ interface BreedDao {
 
     @Update
     fun updateFavoriteBreed(breed: BreedEntity)
+
+    @Query("SELECT * FROM breed WHERE id = :id")
+    fun getBreedById(id: String): Flow<BreedEntity>
 }

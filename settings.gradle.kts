@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "kat"
 include(":app")
 include(":core")
+include(":favorite")

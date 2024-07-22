@@ -6,4 +6,37 @@
     <string name="title_favorite">Favorite</string>
     <string name="no_data">Empty Data</string>
     <string name="something_wrong">Oops, something went wrong!</string>
+    <string name="life_span">Life Span</string>
+    <string name="lifespan_years">%1$s years</string>
+    <string name="weight">Weight</string>
+    <string name="weight_kg">%1$s kg</string>
+    <string name="indoor">Indoor</string>
+    <string name="lap">Lap</string>
+    <string name="hairless">Hairless</string>
+    <string name="short_legs">Short Legs</string>
+    <string name="suppressed_tail">Suppressed Tail</string>
+    <string name="natural">Natural</string>
+    <string name="experimental">Experimental</string>
+    <string name="rare">Rare</string>
+    <string name="rex">Rex</string>
+    <string name="character">Character</string>
+    <string name="temperament">Temperament</string>
+    <string name="adaptability">Adaptability</string>
+    <string name="affection_level">Affection Level</string>
+    <string name="energy_level">Energy Level</string>
+    <string name="intelligence">Intelligence</string>
+    <string name="social_needs">Social Needs</string>
+    <string name="vocalisation">Vocalisation</string>
+    <string name="friendliness">Friendliness</string>
+    <string name="stranger_friendly">Stranger Friendly</string>
+    <string name="child_friendly">Child Friendly</string>
+    <string name="dog_friendly">Dog Friendly</string>
+    <string name="health">Health</string>
+    <string name="health_issues">Health Issues</string>
+    <string name="shedding_level">Shedding Level</string>
+    <string name="grooming">Grooming</string>
+    <string name="hypoallergenic">Hypoallergenic</string>
+    <string name="aegean_breed_description">Native to the Greek islands known as the Cyclades in the Aegean Sea, these are natural cats, meaning they developed without humans getting involved in their breeding. As a breed, Aegean Cats are rare, although they are numerous on their home islands. They are generally friendly toward people and can be excellent cats for families with children.</string>
+    <string name="favorite">Favorite</string>
+
 </resources>

@@ -3,9 +3,8 @@ package com.aurelioklv.kat.core.data.local
 import com.aurelioklv.kat.core.data.local.dao.BreedDao
 import com.aurelioklv.kat.core.data.local.entity.BreedEntity
 import kotlinx.coroutines.flow.Flow
-import javax.inject.Inject
 
-class LocalDataSource @Inject constructor(private val breedDao: BreedDao) {
+class LocalDataSource(private val breedDao: BreedDao) {
 
     fun getAllBreed(): Flow<List<BreedEntity>> = breedDao.getAllBreed()
 
@@ -18,4 +17,6 @@ class LocalDataSource @Inject constructor(private val breedDao: BreedDao) {
         breed.isFavorite = newState
         breedDao.updateFavoriteBreed(breed)
     }
+
+    fun getBreedById(id: String): Flow<BreedEntity> = breedDao.getBreedById(id)
 }

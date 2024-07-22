@@ -2,16 +2,16 @@ package com.aurelioklv.kat.di
 
 import com.aurelioklv.kat.core.domain.usecase.BreedInteractor
 import com.aurelioklv.kat.core.domain.usecase.BreedUseCase
-import dagger.Binds
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
-import javax.inject.Singleton
+import com.aurelioklv.kat.ui.detail.DetailViewModel
+import com.aurelioklv.kat.ui.home.HomeViewModel
+import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.dsl.module
 
-@Module
-@InstallIn(SingletonComponent::class)
-abstract class AppModule {
-    @Binds
-    @Singleton
-    abstract fun provideBreedUseCase(breedUseCase: BreedInteractor): BreedUseCase
+val useCaseModule = module {
+    factory<BreedUseCase> { BreedInteractor(get()) }
+}
+
+val viewModelModule = module {
+    viewModel { HomeViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }

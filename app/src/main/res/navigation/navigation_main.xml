@@ -9,20 +9,19 @@
         android:id="@+id/detailFragment"
         android:name="com.aurelioklv.kat.ui.detail.DetailFragment"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" >
+        tools:layout="@layout/fragment_detail">
         <argument
             android:name="breedId"
             app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/favoriteFragment"
-        android:name="com.aurelioklv.kat.ui.favorite.FavoriteFragment"
-        android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+    <include-dynamic
+        android:id="@+id/favoriteFeatureGraph"
+        app:graphResName="navigation_favorite"
+        app:moduleName="favorite" />
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aurelioklv.kat.ui.home.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />

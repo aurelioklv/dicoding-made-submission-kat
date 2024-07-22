@@ -2,6 +2,7 @@ package com.aurelioklv.kat.core.domain.model
 
 data class Breed(
     val id: String,
+    val isFavorite: Boolean,
     val name: String?,
     val origin: String?,
     val description: String?,

@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.aurelioklv.kat.R
@@ -13,14 +12,13 @@ import com.aurelioklv.kat.core.data.Resource
 import com.aurelioklv.kat.core.ui.BreedAdapter
 import com.aurelioklv.kat.core.ui.DefaultItemDecoration
 import com.aurelioklv.kat.databinding.FragmentHomeBinding
-import dagger.hilt.android.AndroidEntryPoint
+import org.koin.android.ext.android.inject
 
-@AndroidEntryPoint
 class HomeFragment : Fragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: HomeViewModel by viewModels()
+    private val viewModel: HomeViewModel by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,17 +31,6 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.progressBar.visibility = View.GONE
-
-        binding.rvBreeds.layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        binding.rvBreeds.addItemDecoration(
-            DefaultItemDecoration(
-                resources.getDimensionPixelSize(
-                    R.dimen.list_item_spacing
-                )
-            )
-        )
         getData()
     }
 
@@ -53,6 +40,15 @@ class HomeFragment : Fragment() {
             findNavController().navigate(navDirections)
         }
         binding.rvBreeds.adapter = adapter
+        binding.rvBreeds.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
+        binding.rvBreeds.addItemDecoration(
+            DefaultItemDecoration(
+                resources.getDimensionPixelSize(
+                    R.dimen.list_item_spacing
+                )
+            )
+        )
 
         viewModel.breeds.observe(viewLifecycleOwner) { breeds ->
             if (breeds != null) {

@@ -1,8 +1,8 @@
 package com.aurelioklv.kat.core.utils.mapper
 
-import com.aurelioklv.kat.core.domain.model.Breed
 import com.aurelioklv.kat.core.data.local.entity.BreedEntity
 import com.aurelioklv.kat.core.data.remote.response.NetworkBreed
+import com.aurelioklv.kat.core.domain.model.Breed
 
 object BreedNetworkToEntityMapper : Mapper<NetworkBreed, BreedEntity> {
     override fun map(from: NetworkBreed): BreedEntity {
@@ -60,6 +60,7 @@ object BreedEntityToModelMapper : Mapper<BreedEntity, Breed> {
     override fun map(from: BreedEntity): Breed {
         return Breed(
             id = from.id,
+            isFavorite = from.isFavorite,
             name = from.name,
             origin = from.origin,
             description = from.description,

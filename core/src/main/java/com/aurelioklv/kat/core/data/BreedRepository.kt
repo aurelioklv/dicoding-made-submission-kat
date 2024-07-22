@@ -1,10 +1,10 @@
 package com.aurelioklv.kat.core.data
 
-import com.aurelioklv.kat.core.domain.model.Breed
 import com.aurelioklv.kat.core.data.local.LocalDataSource
 import com.aurelioklv.kat.core.data.remote.RemoteDataSource
 import com.aurelioklv.kat.core.data.remote.api.ApiResponse
 import com.aurelioklv.kat.core.data.remote.response.NetworkBreed
+import com.aurelioklv.kat.core.domain.model.Breed
 import com.aurelioklv.kat.core.domain.repository.IBreedRepository
 import com.aurelioklv.kat.core.utils.AppExecutors
 import com.aurelioklv.kat.core.utils.mapper.BreedEntityToModelMapper
@@ -12,9 +12,8 @@ import com.aurelioklv.kat.core.utils.mapper.BreedModelToEntityMapper
 import com.aurelioklv.kat.core.utils.mapper.BreedNetworkToEntityMapper
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import javax.inject.Inject
 
-class BreedRepository @Inject constructor(
+class BreedRepository(
     private val remoteDataSource: RemoteDataSource,
     private val localDataSource: LocalDataSource,
     private val appExecutors: AppExecutors,
@@ -36,6 +35,25 @@ class BreedRepository @Inject constructor(
             override suspend fun saveCallResult(data: List<NetworkBreed>) {
                 val breedEntities = data.map { BreedNetworkToEntityMapper.map(it) }
                 localDataSource.insertBreed(breedEntities)
+            }
+        }.asFlow()
+
+    override fun getBreedById(id: String): Flow<Resource<Breed>> =
+        object : NetworkBoundResource<Breed, NetworkBreed>() {
+            override fun loadFromDB(): Flow<Breed> {
+                return localDataSource.getBreedById(id)
+                    .map { BreedEntityToModelMapper.map(it) }
+            }
+
+            override fun shouldFetch(data: Breed?): Boolean =
+                data == null
+
+            override suspend fun createCall(): Flow<ApiResponse<NetworkBreed>> =
+                remoteDataSource.getBreedById(id)
+
+            override suspend fun saveCallResult(data: NetworkBreed) {
+                val breedEntity = BreedNetworkToEntityMapper.map(data)
+                localDataSource.insertBreed(listOf(breedEntity)) // Insert as a list for consistency
             }
         }.asFlow()
 
