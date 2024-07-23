@@ -4,6 +4,7 @@ import com.aurelioklv.kat.core.domain.usecase.BreedInteractor
 import com.aurelioklv.kat.core.domain.usecase.BreedUseCase
 import com.aurelioklv.kat.ui.detail.DetailViewModel
 import com.aurelioklv.kat.ui.home.HomeViewModel
+import com.aurelioklv.kat.ui.settings.SettingsViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -14,4 +15,5 @@ val useCaseModule = module {
 val viewModelModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { DetailViewModel(get()) }
+    viewModel { SettingsViewModel(get()) }
 }

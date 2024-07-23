@@ -3,6 +3,7 @@ package com.aurelioklv.kat.core.ui
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.aurelioklv.kat.core.R
 import com.aurelioklv.kat.core.databinding.ItemBreedBinding
 import com.aurelioklv.kat.core.domain.model.Breed
 import com.bumptech.glide.Glide
@@ -24,6 +25,8 @@ class BreedAdapter(private val onClick: ((Breed) -> Unit)? = null) :
             with(binding) {
                 Glide.with(itemView.context)
                     .load(breed.imageUrl)
+                    .placeholder(R.drawable.walking_cat)
+                    .error(R.drawable.sitting_cat)
                     .into(ivBreedPhoto)
                 tvBreedName.text = breed.name
                 tvOrigin.text = breed.origin

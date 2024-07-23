@@ -21,9 +21,13 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.aurelioklv.kat.ui.home.HomeFragment"
-        android:label="HomeFragment">
+        android:label="HomeFragment">1
         <action
             android:id="@+id/action_homeFragment_to_detailFragment"
             app:destination="@id/detailFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.aurelioklv.kat.ui.settings.SettingsFragment"
+        android:label="SettingsFragment" />
 </navigation>

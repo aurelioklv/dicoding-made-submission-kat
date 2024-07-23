@@ -5,6 +5,7 @@ import com.aurelioklv.kat.core.BuildConfig
 import com.aurelioklv.kat.core.data.BreedRepository
 import com.aurelioklv.kat.core.data.local.LocalDataSource
 import com.aurelioklv.kat.core.data.local.db.AppDatabase
+import com.aurelioklv.kat.core.data.local.preferences.UserPreferences
 import com.aurelioklv.kat.core.data.remote.RemoteDataSource
 import com.aurelioklv.kat.core.data.remote.api.ApiService
 import com.aurelioklv.kat.core.domain.repository.IBreedRepository
@@ -54,4 +55,8 @@ val repositoryModule = module {
     single { RemoteDataSource(get()) }
     factory { AppExecutors() }
     single<IBreedRepository> { BreedRepository(get(), get(), get()) }
+}
+
+val dataStoreModule = module {
+    single { UserPreferences(androidContext()) }
 }
