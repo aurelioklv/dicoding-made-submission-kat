@@ -2,6 +2,7 @@ package com.aurelioklv.kat.core.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.aurelioklv.kat.core.R
 import com.aurelioklv.kat.core.databinding.ItemBreedBinding
@@ -14,9 +15,12 @@ class BreedAdapter(private val onClick: ((Breed) -> Unit)? = null) :
 
     fun setData(newListData: List<Breed>?) {
         if (newListData == null) return
+        val diffCallback = BreedDiffCallback(listData, newListData)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+
         listData.clear()
         listData.addAll(newListData)
-        notifyDataSetChanged()
+        diffResult.dispatchUpdatesTo(this)
     }
 
     inner class ViewHolder(private val binding: ItemBreedBinding) :
@@ -50,5 +54,27 @@ class BreedAdapter(private val onClick: ((Breed) -> Unit)? = null) :
 
     override fun getItemCount(): Int {
         return listData.size
+    }
+}
+
+class BreedDiffCallback(
+    private val oldList: List<Breed>,
+    private val newList: List<Breed>,
+) : DiffUtil.Callback() {
+
+    override fun getOldListSize(): Int {
+        return oldList.size
+    }
+
+    override fun getNewListSize(): Int {
+        return newList.size
+    }
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition].id == newList[newItemPosition].id
+    }
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        return oldList[oldItemPosition] == newList[newItemPosition]
     }
 }

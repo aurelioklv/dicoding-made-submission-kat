@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.aurelioklv.kat.R
 import com.aurelioklv.kat.core.data.local.preferences.AppTheme
 import com.aurelioklv.kat.databinding.FragmentSettingsBinding
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -51,16 +52,16 @@ class SettingsFragment : Fragment() {
         var checkedIdx = theme.ordinal
 
         MaterialAlertDialogBuilder(requireContext())
-            .setTitle("Select Theme")
+            .setTitle(getString(R.string.select_theme))
             .setSingleChoiceItems(themeOptions, checkedIdx) { _, which ->
                 checkedIdx = which
             }
-            .setPositiveButton("Ok") { dialog, _ ->
+            .setPositiveButton(getString(R.string.ok)) { dialog, _ ->
                 val newTheme = AppTheme.getThemeFromOrdinal(checkedIdx) ?: AppTheme.SYSTEM
                 viewModel.updateTheme(newTheme)
                 dialog.dismiss()
             }
-            .setNegativeButton("Cancel") { dialog, _ ->
+            .setNegativeButton(getString(R.string.cancel)) { dialog, _ ->
                 dialog.dismiss()
             }
             .show()
