@@ -20,7 +20,8 @@ class FavoriteFragment : Fragment() {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var emptyViewBinding: ViewEmptyBinding
+    private var _emptyViewBinding: ViewEmptyBinding? = null
+    private val emptyViewBinding get() = _emptyViewBinding!!
 
     private val viewModel: FavoriteViewModel by inject()
 
@@ -29,7 +30,7 @@ class FavoriteFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
-        emptyViewBinding =
+        _emptyViewBinding =
             ViewEmptyBinding.bind(binding.root.findViewById(com.aurelioklv.kat.favorite.R.id.empty_data))
         return binding.root
     }
@@ -65,8 +66,9 @@ class FavoriteFragment : Fragment() {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
+        _emptyViewBinding = null
     }
 }
