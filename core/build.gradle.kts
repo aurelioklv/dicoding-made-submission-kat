@@ -25,6 +25,8 @@ android {
         buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
         buildConfigField("String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\"")
         buildConfigField("String", "PASSPHRASE", "\"${properties.getProperty("PASSPHRASE")}\"")
+        buildConfigField("String", "HOSTNAME", "\"${properties.getProperty("HOSTNAME")}\"")
+        buildConfigField("String", "PIN", "\"${properties.getProperty("PIN")}\"")
 
         consumerProguardFiles("consumer-rules.pro")
     }
