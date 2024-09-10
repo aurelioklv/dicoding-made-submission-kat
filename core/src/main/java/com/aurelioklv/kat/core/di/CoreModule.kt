@@ -10,6 +10,8 @@ import com.aurelioklv.kat.core.data.remote.RemoteDataSource
 import com.aurelioklv.kat.core.data.remote.api.ApiService
 import com.aurelioklv.kat.core.domain.repository.IBreedRepository
 import com.aurelioklv.kat.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidContext
@@ -18,12 +20,16 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-
 val databaseModule = module {
     factory { get<AppDatabase>().breedDao() }
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes(BuildConfig.PASSPHRASE.toCharArray())
+        val factory = SupportFactory(passphrase)
+
         Room.databaseBuilder(androidContext(), AppDatabase::class.java, "kat.db")
-            .fallbackToDestructiveMigration().build()
+            .openHelperFactory(factory)
+            .fallbackToDestructiveMigration()
+            .build()
     }
 }
 

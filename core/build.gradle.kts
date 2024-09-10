@@ -24,6 +24,7 @@ android {
 
         buildConfigField("String", "API_KEY", "\"${properties.getProperty("API_KEY")}\"")
         buildConfigField("String", "BASE_URL", "\"${properties.getProperty("BASE_URL")}\"")
+        buildConfigField("String", "PASSPHRASE", "\"${properties.getProperty("PASSPHRASE")}\"")
     }
 
     buildTypes {
@@ -62,4 +63,7 @@ dependencies {
     androidTestImplementation("androidx.room:room-testing:2.6.1")
 
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+
+    implementation("net.zetetic:android-database-sqlcipher:4.5.3")
+    implementation("androidx.sqlite:sqlite-ktx:2.4.0")
 }
