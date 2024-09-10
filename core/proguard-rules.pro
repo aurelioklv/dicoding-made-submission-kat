@@ -19,3 +19,16 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# Keep all classes and their members in the specified packages
+-keep class com.aurelioklv.kat.core.data.** { *; }
+-keep class com.aurelioklv.kat.core.domain.** { *; }
+-keep class com.aurelioklv.kat.core.data.local.preferences.** { *; }
+-keep class com.aurelioklv.kat.core.di.** { *; }
+-keep class com.aurelioklv.kat.core.domain.model.** { *; }
+-keep class com.aurelioklv.kat.core.domain.repository.** { *; }
+-keep class com.aurelioklv.kat.core.domain.usecase.** { *; }
+-keep class com.aurelioklv.kat.core.ui.** { *; }
+
+# Preserve enums
+-keep class * extends java.lang.Enum { *; }

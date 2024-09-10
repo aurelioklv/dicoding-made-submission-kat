@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import com.aurelioklv.kat.R
 import com.aurelioklv.kat.core.data.Resource
 import com.aurelioklv.kat.core.domain.model.Breed
@@ -18,7 +17,6 @@ class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val args: DetailFragmentArgs by navArgs()
     private val viewModel: DetailViewModel by inject()
 
     override fun onCreateView(
@@ -32,7 +30,7 @@ class DetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val breedId = args.breedId
+        val breedId = arguments?.getString(KEY_BREED_ID) ?: ""
         viewModel.getBreedById(breedId)
         viewModel.breedDetail.observe(viewLifecycleOwner) {
             if (it != null) {
@@ -117,5 +115,9 @@ class DetailFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val KEY_BREED_ID = "breedId"
     }
 }

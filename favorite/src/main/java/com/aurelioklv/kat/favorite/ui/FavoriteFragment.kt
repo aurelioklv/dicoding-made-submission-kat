@@ -11,8 +11,10 @@ import com.aurelioklv.kat.R
 import com.aurelioklv.kat.core.ui.BreedAdapter
 import com.aurelioklv.kat.core.ui.DefaultItemDecoration
 import com.aurelioklv.kat.databinding.ViewEmptyBinding
+import com.aurelioklv.kat.favorite.R.id.action_favoriteFragment_to_detailFragment
 import com.aurelioklv.kat.favorite.databinding.FragmentFavoriteBinding
 import com.aurelioklv.kat.favorite.di.favoriteModule
+import com.aurelioklv.kat.ui.detail.DetailFragment.Companion.KEY_BREED_ID
 import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 
@@ -44,9 +46,10 @@ class FavoriteFragment : Fragment() {
 
     private fun getData() {
         val adapter = BreedAdapter {
-            val navDirections =
-                FavoriteFragmentDirections.actionFavoriteFragmentToDetailFragment(it.id)
-            findNavController().navigate(navDirections)
+            val bundle = Bundle().apply {
+                putString(KEY_BREED_ID, it.id)
+            }
+            findNavController().navigate(action_favoriteFragment_to_detailFragment, bundle)
         }
         binding.rvBreeds.adapter = adapter
         binding.rvBreeds.layoutManager =

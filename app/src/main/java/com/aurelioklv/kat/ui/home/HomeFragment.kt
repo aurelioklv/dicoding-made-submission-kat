@@ -12,6 +12,7 @@ import com.aurelioklv.kat.core.data.Resource
 import com.aurelioklv.kat.core.ui.BreedAdapter
 import com.aurelioklv.kat.core.ui.DefaultItemDecoration
 import com.aurelioklv.kat.databinding.FragmentHomeBinding
+import com.aurelioklv.kat.ui.detail.DetailFragment.Companion.KEY_BREED_ID
 import org.koin.android.ext.android.inject
 
 class HomeFragment : Fragment() {
@@ -36,8 +37,10 @@ class HomeFragment : Fragment() {
 
     private fun getData() {
         val adapter = BreedAdapter {
-            val navDirections = HomeFragmentDirections.actionHomeFragmentToDetailFragment(it.id)
-            findNavController().navigate(navDirections)
+            val bundle = Bundle().apply {
+                putString(KEY_BREED_ID, it.id)
+            }
+            findNavController().navigate(R.id.action_homeFragment_to_detailFragment, bundle)
         }
         binding.rvBreeds.adapter = adapter
         binding.rvBreeds.layoutManager =
