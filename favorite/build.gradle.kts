@@ -2,7 +2,6 @@ plugins {
     alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.jetbrains.kotlin.android)
     id("kotlin-kapt")
-    id("androidx.navigation.safeargs.kotlin")
 }
 
 apply("../shared_dependencies.gradle")
