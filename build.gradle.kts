@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android) apply false
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.android.dynamic.feature) apply false
+    id("org.jetbrains.kotlinx.kover") version "0.5.0"
 }
 buildscript {
     repositories {

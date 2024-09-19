@@ -44,6 +44,18 @@ jobs:
           echo "PIN=${{ secrets.PIN }}" >> local.properties
           echo "PASSPHRASE=${{ secrets.PASSPHRASE }}" >> local.properties
 
+      - name: Unit Test
+        run: ./gradlew test
+
+      - name: Generate Kover HTML Report
+        run: ./gradlew koverHtmlReport
+
+      - name: Upload Kover HTML Report
+        uses: actions/upload-artifact@v3
+        with:
+          name: kover-html-report
+          path: core/build/reports/kover/project-html/index.html
+
       # Build the release APK and AAB with Gradle
       - name: Build release APK and AAB with Gradle
         run: ./gradlew bundleRelease assembleRelease
