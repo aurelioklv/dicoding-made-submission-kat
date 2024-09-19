@@ -54,7 +54,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: kover-html-report
-          path: core/build/reports/kover/project-html/index.html
+          path: core/build/reports/kover/project-html
 
       # Build the release APK and AAB with Gradle
       - name: Build release APK and AAB with Gradle
