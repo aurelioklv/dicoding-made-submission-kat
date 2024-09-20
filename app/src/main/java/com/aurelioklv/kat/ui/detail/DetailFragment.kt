@@ -62,8 +62,8 @@ class DetailFragment : Fragment() {
         with(binding) {
             Glide.with(this@DetailFragment)
                 .load(breed.imageUrl)
-                .placeholder(com.aurelioklv.kat.core.R.drawable.walking_cat)
-                .error(com.aurelioklv.kat.core.R.drawable.sitting_cat)
+                .placeholder(com.aurelioklv.kat.core.R.drawable.progress)
+                .error(com.aurelioklv.kat.core.R.drawable.img_box_light)
                 .into(ivCat)
 
             tvName.text = breed.name

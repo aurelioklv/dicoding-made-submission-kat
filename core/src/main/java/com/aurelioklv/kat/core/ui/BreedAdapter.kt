@@ -29,8 +29,8 @@ class BreedAdapter(private val onClick: ((Breed) -> Unit)? = null) :
             with(binding) {
                 Glide.with(itemView.context)
                     .load(breed.imageUrl)
-                    .placeholder(R.drawable.walking_cat)
-                    .error(R.drawable.sitting_cat)
+                    .placeholder(R.drawable.progress)
+                    .error(R.drawable.img_box_light)
                     .into(ivBreedPhoto)
                 tvBreedName.text = breed.name
                 tvOrigin.text = breed.origin
